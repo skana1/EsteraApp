@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <button id="getJokeButton" class="btn btn-primary">Get a Random Joke</button>
+
+    <div id="jokeDisplay" style="margin-top: 20px;">
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#getJokeButton').click(function () {
+            $.ajax({
+                url: '@Url.Action("GetRandomJoke", "Home")',
+                method: 'GET',
+                success: function (data) {
+                    $('#jokeDisplay').html('<strong>' + data.setup + '</strong><br>' + data.punchline);
+                },
+                error: function () {
+                    $('#jokeDisplay').html('Failed to retrieve joke.');
+                }
+            });
+        });
+    });
+</script>

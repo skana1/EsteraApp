@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Html
+@using X.PagedList
+@using X.PagedList.Mvc
+@model IPagedList<EsteraApp.Models.Person>
+
+<h1>Person</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Krijo element te ri</a>
+</p>
+
+<table id="personTable" class="table display">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model[0].Nid)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Emer)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Mbiemer)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Atesi)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Amesi)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Gjinia)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Datelindja)</th>
+            <th>@Html.DisplayNameFor(model => model[0].Vendlindja)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nid)</td>
+                <td>@Html.DisplayFor(modelItem => item.Emer)</td>
+                <td>@Html.DisplayFor(modelItem => item.Mbiemer)</td>
+                <td>@Html.DisplayFor(modelItem => item.Atesi)</td>
+                <td>@Html.DisplayFor(modelItem => item.Amesi)</td>
+                <td>@Html.DisplayFor(modelItem => item.Gjinia)</td>
+                <td>@Html.DisplayFor(modelItem => item.Datelindja)</td>
+                <td>@Html.DisplayFor(modelItem => item.Vendlindja)</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">
+                        <i class="fas fa-pencil-alt"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
